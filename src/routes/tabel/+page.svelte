@@ -20,8 +20,8 @@
 			<Table.Header>
 				<Table.Row>
 					<Table.Head class="c w-[16px]">Ranking</Table.Head>
-					<Table.Head class="text-center">Kelas</Table.Head>
-					<Table.Head class="min-w-52 text-center">Nama</Table.Head>
+					<!-- <Table.Head class="text-center">Kelas</Table.Head>
+					<Table.Head class="min-w-52 text-center">Nama</Table.Head> -->
 					<Table.Head class="min-w-52 text-center">Pilihan Pertama</Table.Head>
 					<Table.Head class="min-w-52 text-center">Pilihan Kedua</Table.Head>
 				</Table.Row>
@@ -30,8 +30,8 @@
 				{#each data.users as user}
 					<Table.Row>
 						<Table.Cell class="text-center">{user.rank}</Table.Cell>
-						<Table.Cell class="text-center">{user.class}</Table.Cell>
-						<Table.Cell class="text-center">{user.name}</Table.Cell>
+						<!-- <Table.Cell class="text-center">{user.class}</Table.Cell>
+						<Table.Cell class="text-center">{user.name}</Table.Cell> -->
 						<Table.Cell class="text-center">
 							{#if !user.first_univ}
 								Belum dipilih
