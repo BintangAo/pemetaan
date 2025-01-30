@@ -1,7 +1,8 @@
 <script lang="ts">
     import type {PageProps} from "./$types"
     import { enhance } from '$app/forms';
-
+	import * as Command from "$lib/components/ui/command/index.js";
+	import * as Popover from "$lib/components/ui/popover/index.js";
     import * as Card from "$lib/components/ui/card/index.js";
     import * as Select from "$lib/components/ui/select/index.js";
     import { Label } from "$lib/components/ui/label/index.js";
@@ -18,7 +19,7 @@
     let disable = $state(false)
     let changedValue = $state(false)
     const toggleDisable = ()=>{
-        disable=!disable
+        disable=false
     }
     $effect(()=>{
         if(form?.success){
@@ -30,10 +31,7 @@
     })
     $effect(()=>{
         if(form?.success||form?.error){
-            form.success = false
-            form.error = false
             toggleDisable()
-            console.log(disable)
         }
     }
     )
