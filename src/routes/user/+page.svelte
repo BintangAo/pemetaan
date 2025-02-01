@@ -21,6 +21,12 @@
     const toggleDisable = ()=>{
         disable=false
     }
+	const deleteAllChoice=()=>{
+		firstUniv=""
+		firstProdi=""
+		secondUniv=""
+		secondProdi=""
+	}
     $effect(()=>{
         if(form?.success){
             toast.success('Berhasil menyimpan pilihan!')
@@ -46,7 +52,7 @@
 				Halo
 				{data.user.name},
 			</Card.Title>
-			<Card.Description>Pilih jurusan yang kamu impikan.</Card.Description>
+			<Card.Description>Pilih jurusan yang kamu inginkan .</Card.Description>
 			<Card.Content>
 				<form
 					method="POST"
@@ -118,11 +124,12 @@
 							{/each}
 						</Select.Content>
 					</Select.Root>
-					<input type="hidden" name="firstUniv" value={firstUniv} />
-					<input type="hidden" name="firstProdi" value={firstProdi} />
-					<input type="hidden" name="secondUniv" value={secondUniv} />
-					<input type="hidden" name="secondProdi" value={secondProdi} />
-					<Button type="submit" disabled={disable || !firstProdi || !secondProdi||!changedValue}
+					<input type="hidden" name="firstUniv" bind:value={firstUniv} />
+					<input type="hidden" name="firstProdi" bind:value={firstProdi} />
+					<input type="hidden" name="secondUniv" bind:value={secondUniv} />
+					<input type="hidden" name="secondProdi" bind:value={secondProdi} />
+					<Button variant="destructive" onclick={()=>deleteAllChoice()}>Hapus Pilihan</Button>
+					<Button type="submit" disabled={disable || !firstProdi || !changedValue}
 						>Submit</Button
 					>
 				</form>
