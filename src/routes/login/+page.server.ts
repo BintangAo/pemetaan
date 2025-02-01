@@ -1,7 +1,7 @@
 import type { Actions,PageServerLoad } from './$types';
 import supabase from '$lib/supabase';
 import { fail, redirect } from '@sveltejs/kit';
-
+import 'dotenv/config'
 export const load:PageServerLoad = async ({cookies})=>{
 	const {data,error} = await supabase.from('users').select().eq('session_key',cookies.get('sessionKeys'))
 	if (error){
@@ -32,7 +32,7 @@ export const actions = {
 				maxAge: 60 * 60 * 24 * 7,
 				sameSite : 'strict',
 				httpOnly: true,
-				secure: true
+				secure: process.env.IS_PRODUCTION === "false" ? false : true
 			});
 			return { success: true };
 	}
