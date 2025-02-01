@@ -2,22 +2,23 @@ import supabase from '$lib/supabase';
 import { redirect, error as serverE,type Handle } from '@sveltejs/kit';
 
 type Data = {
-    id: number;
-    created_at: string;
-    last_changed: string;
-    name: string;
-    password: string;
-    rank: number;
-    first_univ: string;
-    first_prodi: string;
-    second_univ: string;
-    second_prodi: string;
-    session_key: string;
-    class: string;
+    id:number,
+    created_at:string,
+    last_changed:string,
+    name:string,
+    password:string,
+    rank:number,
+    first_univ:string,
+    first_prodi:string,
+    second_univ:string,
+    second_prodi:string,
+    class:string,
+    nisn:string,
+    session_key:string,
 };
 
 export const handle: Handle = async ({ event, resolve }) => {
-    const restrictedPaths = ['/', '/user','/tabel'];
+    const restrictedPaths = ['/', '/user','/tabel','/dashboard'];
     const {data,error} = await supabase.from('users').select().eq('session_key',event.cookies.get('sessionKeys'));
     if(error) {
         throw serverE(500)
