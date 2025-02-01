@@ -130,4 +130,5 @@
 		</Card.Header>
 	</Card.Root>
 	<Button variant="outline" class="w-[350px] shadow-xl" href="/tabel">Lihat Tabel</Button>
+	<Button variant="outline" class="w-[350px] shadow-xl" href="/dashboard">Lihat Dashboard</Button>
 </div>
