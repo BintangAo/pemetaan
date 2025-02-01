@@ -15,7 +15,9 @@ declare global {
 				first_prodi:string,
 				second_univ:string,
 				second_prodi:string,
-				session_key:string
+				class:string,
+				nisn:string,
+				session_key:string,
 			}
 		}
 		// interface PageData {}
