@@ -12,8 +12,8 @@ export const actions = {
         const form = await request.formData();
         const first_univ = form.get('firstUniv');
         const first_prodi = form.get('firstProdi');
-        const second_univ = form.get('secondUniv');
-        const second_prodi = form.get('secondProdi');
+        const second_univ = form.get('secondUniv')||null;
+        const second_prodi = form.get('secondProdi')||null;
         const {error} = await supabase.from('users').update({first_univ,first_prodi,second_univ,second_prodi}).eq('id',locals.user.id).returns()
         if(error){
             return fail(500,{error:true})
