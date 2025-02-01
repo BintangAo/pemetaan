@@ -7,6 +7,9 @@ export const load:PageServerLoad = async ({locals})=>{
     const firstUniv = locals.user.first_univ
     const secondUniv = locals.user.second_univ
     const rank = locals.user.rank
+    if(!firstUniv){
+        return {user:locals.user}
+    }
     const firstProdiFormated = firstProdi.split(" (")[0]
     const jumlahProdiPertama = await supabase.from('users').select('rank').or(`first_prodi.ilike.%${firstProdiFormated}%,second_prodi.ilike.%${firstProdiFormated}%`).order('rank')
     const jumlahUnivPertama = await supabase.from('users').select('first_prodi,second_prodi',).or(`first_univ.eq.${firstUniv},second_univ.eq.${firstUniv}`).not('id','eq',locals.user.id)
