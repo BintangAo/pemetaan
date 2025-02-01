@@ -4,6 +4,7 @@
     import * as Table from '$lib/components/ui/table/index'
     import { PieChart } from 'layerchart';
 	import type { PageProps } from './$types';
+    import {Button} from '$lib/components/ui/button'
     const {data}:PageProps = $props()
     const dataPertama = [
         {
@@ -66,6 +67,7 @@
                     </Table.Row>
                 </Table.Body>
             </Table.Root>
+            <Button href="/user">Ganti Pilihan</Button>
         </div>
         <div class="flex flex-col mb-8"> 
             <p class="w-full text-2xl font-medium">Persentase Pemilihan</p>
