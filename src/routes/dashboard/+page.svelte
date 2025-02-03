@@ -71,7 +71,7 @@
 		</div>
 		<div class="mb-8 flex flex-col">
 			<p class="w-full text-2xl font-medium">Persentase Pemilihan</p>
-			<div class=" pt-10">
+			<div class="h-56 pt-10">
 				<p class="block text-center text-lg font-medium">
 					Pilihan Pertama {`(${data.user.first_univ ?? '-'})`}
 				</p>
