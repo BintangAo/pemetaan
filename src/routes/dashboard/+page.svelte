@@ -17,7 +17,7 @@
 		},
 		{
 			nama: 'Prodi lain',
-			jumlah: data.selainProdiPertama ?? 0
+			jumlah: data.jumlahSelainProdiPertama ?? 0
 		}
 	];
 	const dataKedua = [
@@ -31,7 +31,7 @@
 		},
 		{
 			nama: `Prodi lain`,
-			jumlah: data.selainProdiKedua ?? 0
+			jumlah: data.jumlahSelainProdiKedua ?? 0
 		}
 	];
 </script>
@@ -79,7 +79,7 @@
                 <p class="block text-center text-lg font-medium text-muted-foreground">
                     Kamu belum memilih universitas
                 </p>
-                {:else if  !data.jumlahRankAtasPertama&&!data.jumlahRankDiBawahPertama&&!data.selainProdiPertama}
+                {:else if  !data.jumlahRankAtasPertama&&!data.jumlahRankDiBawahPertama&&!data.jumlahSelainProdiPertama}
                 <p class="block text-center text-lg font-medium text-muted-foreground">
                     Kamu seorang diri di {data.user.first_univ}
                 </p>
@@ -96,7 +96,7 @@
                         case `${data.user.first_prodi ?? '-'} (ranking di bawahmu)`:
                             return `${data.user.first_prodi ?? '-'} (ranking di bawahmu) (${data.jumlahRankDiBawahPertama ?? 0})`;
                         case 'Prodi lain':
-                            return `Prodi lain (${data.selainProdiPertama ?? 0})`;
+                            return `Prodi lain (${data.jumlahSelainProdiPertama ?? 0})`;
                     }
                 }}
                 renderContext="svg"
@@ -120,7 +120,7 @@
                 <p class="block text-center text-lg font-medium text-muted-foreground">
                     Kamu belum memilih universitas
                 </p>
-                {:else if !data.jumlahRankAtasKedua&&!data.jumlahRankDiBawahKedua&&!data.selainProdiKedua}
+                {:else if !data.jumlahRankAtasKedua&&!data.jumlahRankDiBawahKedua&&!data.jumlahSelainProdiKedua}
                 <p class="block text-center text-lg font-medium text-muted-foreground">
                     Kamu seorang diri di {data.user.second_univ}
                 </p>
@@ -139,7 +139,7 @@
 							case `${data.user.second_prodi ?? '-'} (ranking di bawahmu)`:
 								return `${data.user.second_prodi ?? '-'} (ranking di bawahmu) (${data.jumlahRankDiBawahKedua ?? 0})`;
 							case 'Prodi lain':
-								return `Prodi lain (${data.selainProdiKedua ?? 0})`;
+								return `Prodi lain (${data.jumlahSelainProdiKedua ?? 0})`;
 						}
 					}}
 					cRange={['#F93827', '#FFD65A', '#16C47F']}
