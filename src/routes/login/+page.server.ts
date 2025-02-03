@@ -1,5 +1,6 @@
 import type { Actions,PageServerLoad } from './$types';
 import supabase from '$lib/supabase';
+import crypto from 'node:crypto'
 import { fail, redirect } from '@sveltejs/kit';
 import 'dotenv/config'
 export const load:PageServerLoad = async ({cookies})=>{
@@ -29,9 +30,12 @@ export const actions = {
 		}
 		
 		if(!data![0].session_key){
-			const hasher = new Bun.CryptoHasher('sha256',process.env.SECRET_KEY)
-			hasher.update(data![0].nisn)
-			cookies.set('sessionKeys', hasher.digest('hex'), {
+			const key = crypto.createHash('sha256').update(data![0].name).digest('hex')
+			const {error} = await supabase.from('users').update({session_key:key}).eq('id',data![0].id)
+			if(error){
+				return fail(500,{error:true})
+			}
+			cookies.set('sessionKeys', key, {
 				path: '/',
 				maxAge: 60 * 60 * 24 * 7,
 				sameSite : 'strict',
@@ -45,7 +49,7 @@ export const actions = {
 			maxAge: 60 * 60 * 24 * 7,
 			sameSite : 'strict',
 			httpOnly: true,
-			secure: process.env.IS_PRODUCTION === "false" ? false : true
+			secure: process.env.NODE_ENV === "production" ? true : false
 		});
 		return { success: true };
 	}
