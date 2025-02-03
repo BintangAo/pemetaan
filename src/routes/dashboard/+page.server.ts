@@ -15,9 +15,8 @@ export const load:PageServerLoad = async ({locals})=>{
     const jumlahUnivPertama = await supabase.from('users').select('first_prodi,second_prodi',).or(`first_univ.eq.${firstUniv},second_univ.eq.${firstUniv}`).not('id','eq',locals.user.id)
     const selainProdiPertama = jumlahUnivPertama.data?.filter((e)=>e.first_prodi!==firstProdi&&e.second_prodi!==firstProdi).length
     const cleanJumlahProdiPertama = jumlahProdiPertama.data?.filter((e)=>
-        e.first_prodi === firstProdi && e.second_prodi === firstProdi
+        e.first_prodi === firstProdi || e.second_prodi === firstProdi
     )
-
     const rankPertama = cleanJumlahProdiPertama!.findIndex((e)=>e.rank===rank) + 1
     const jumlahRankAtasPertama = rankPertama-1 
     const jumlahRankDiBawahPertama = rankPertama>0?cleanJumlahProdiPertama!.length - rankPertama:0
@@ -30,7 +29,7 @@ export const load:PageServerLoad = async ({locals})=>{
     const jumlahUnivKedua = await supabase.from('users').select('first_prodi,second_prodi',).or(`first_univ.eq.${secondUniv},second_univ.eq.${secondUniv}`).not('id','eq',locals.user.id)
     const selainProdiKedua = jumlahUnivKedua.data?.filter((e)=>e.first_prodi!==secondProdi&&e.second_prodi!==secondProdi).length
     const cleanJumlahProdiKedua = jumlahProdiKedua.data?.filter((e)=>
-        e.first_prodi === secondProdi && e.second_prodi === secondProdi
+        e.first_prodi === secondProdi || e.second_prodi === secondProdi
     )
     
     const rankKedua = cleanJumlahProdiKedua!.findIndex((e)=>e.rank===rank) + 1 
