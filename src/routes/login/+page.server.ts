@@ -27,7 +27,11 @@ export const actions = {
 		if (data![0].password !== password){
 			return fail(400, { incorrect: true });
 		}
-		cookies.set('sessionKeys', data![0].session_key, {
+		
+		if(!data![0].session_key){
+			const hasher = new Bun.CryptoHasher('sha256',process.env.SECRET_KEY)
+			hasher.update(data![0].nisn)
+			cookies.set('sessionKeys', hasher.digest('hex'), {
 				path: '/',
 				maxAge: 60 * 60 * 24 * 7,
 				sameSite : 'strict',
@@ -35,5 +39,14 @@ export const actions = {
 				secure: process.env.IS_PRODUCTION === "false" ? false : true
 			});
 			return { success: true };
+		}
+		cookies.set('sessionKeys', data![0].session_key, {
+			path: '/',
+			maxAge: 60 * 60 * 24 * 7,
+			sameSite : 'strict',
+			httpOnly: true,
+			secure: process.env.IS_PRODUCTION === "false" ? false : true
+		});
+		return { success: true };
 	}
 } satisfies Actions;
