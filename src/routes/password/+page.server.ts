@@ -10,8 +10,9 @@ export const actions={
         if(oldPassword!==locals.user.password){
             return fail(400,{invalidPass:true})
         } 
-        const {error} = await supabase.from('users').insert({password:newPassword}).eq('id',locals.user.id)
+        const {error} = await supabase.from('users').update({password:newPassword}).eq('id',locals.user.id)
         if(error){
+            console.log(error)
             return fail(500,{serverErr:true})
         }
         return {success:true}
