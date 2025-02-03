@@ -47,6 +47,7 @@
 	"dependencies": {
 		"@libsql/client": "^0.14.0",
 		"@supabase/supabase-js": "^2.48.1",
+		"@types/bun": "^1.2.2",
 		"dotenv": "^16.4.7",
 		"drizzle-orm": "^0.39.0",
 		"layerchart": "^0.91.1"
