@@ -20,6 +20,7 @@ export const load: PageServerLoad = async () => {
     if (data.length===0){
         throw err(404,{message:"Data not found"})
     }
+    const respondCount = data.filter((e)=>e.first_univ).length
     const countUniv:{[key:string]:number} = {}
     data.forEach((e)=>{
         if(e.first_univ){
@@ -33,6 +34,7 @@ export const load: PageServerLoad = async () => {
     })
     return {
         countUniv,
+        respondCount,
         users:data as Datas
     }
 };

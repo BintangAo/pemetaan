@@ -14,6 +14,7 @@
 	<Card.Header>
 		<Card.Title>Tabel Universitas Pilihan</Card.Title>
 		<Card.Description>Berikut adalah tabel pemetaan pilihan universitas seluruh peserta</Card.Description>
+		<Card.Description>{data.respondCount} dari 144 siswa sudah memilih pilihannya!</Card.Description>
 	</Card.Header>
 	<Card.Content class="min-w-full">
 		<Table.Root class="min-w-full">
