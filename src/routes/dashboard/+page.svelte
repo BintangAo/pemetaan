@@ -38,7 +38,9 @@
 
 <Card.Root class="m-4 overflow-scroll sm:m-28">
 	<Card.Header>
-		<Card.Title class="text-4xl">Dashboard</Card.Title>
+		<Card.Title class="text-4xl">Dashboard
+			<Button href="/password">Ganti Password</Button>
+		</Card.Title>
 		<Separator />
 	</Card.Header>
 	<Card.Content class="flex h-fit min-w-[824px] flex-col">
