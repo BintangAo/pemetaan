@@ -71,7 +71,7 @@
 		</div>
 		<div class="mb-8 flex flex-col">
 			<p class="w-full text-2xl font-medium">Persentase Pemilihan</p>
-			<div class="h-56 pt-10">
+			<div class="h-64 pt-10 pb-10">
 				<p class="block text-center text-lg font-medium">
 					Pilihan Pertama {`(${data.user.first_univ ?? '-'})`}
 				</p>
@@ -84,6 +84,7 @@
                     Kamu seorang diri di {data.user.first_univ}
                 </p>
                 {:else}
+				<small class="block text-center text-sm text-muted-foreground">Inilah data dari jumlah siswa yang memilih {data.user.first_univ}</small>
                 <PieChart
                 legend
                 data={dataPertama}
@@ -112,7 +113,7 @@
                 {/if}
 				
 			</div>
-			<div class="h-56 pt-10">
+			<div class="h-56 pt-10 pb-5">
 				<p class="block text-center text-lg font-medium">
 					Pilihan Kedua {`(${data.user.second_univ || '-'})`}
 				</p>
@@ -125,6 +126,7 @@
                     Kamu seorang diri di {data.user.second_univ}
                 </p>
                 {:else}
+				<small class="block text-center text-sm text-muted-foreground">Inilah data dari jumlah siswa yang memilih {data.user.first_univ}</small>
                 <PieChart
 					legend
 					data={dataKedua}
