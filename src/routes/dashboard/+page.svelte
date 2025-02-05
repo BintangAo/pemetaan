@@ -84,7 +84,7 @@
                     Kamu seorang diri di {data.user.first_univ}
                 </p>
                 {:else}
-				<small class="block text-center text-sm text-muted-foreground">Inilah data dari jumlah siswa yang memilih {data.user.first_univ}</small>
+				<small class="block text-center text-sm text-muted-foreground">Inilah data dari jumlah siswa yang memilih {data.user.second_univ}</small>
                 <PieChart
                 legend
                 data={dataPertama}
