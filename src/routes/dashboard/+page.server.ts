@@ -14,8 +14,9 @@ export const load: PageServerLoad = async ({ locals }) => {
 	const jumlahProdiPertama = await supabase
 		.from('users')
 		.select('rank,first_prodi,second_prodi')
-		.eq('first_univ', firstUniv)
-		.or(`first_prodi.ilike.%${firstProdiFormated}%,second_prodi.ilike.%${firstProdiFormated}%`)
+		.or(
+			`and(first_prodi.ilike.%${firstProdiFormated}%,first_univ.eq.${firstUniv}),and(second_prodi.ilike.%${firstProdiFormated}%,second_univ.eq.${firstUniv})`
+		)
 		.order('rank');
 	const jumlahUnivPertama = await supabase
 		.from('users')
@@ -57,8 +58,9 @@ export const load: PageServerLoad = async ({ locals }) => {
 	const jumlahProdiKedua = await supabase
 		.from('users')
 		.select('rank,first_prodi,second_prodi')
-		.eq('second_univ', secondUniv)
-		.or(`first_prodi.ilike.%${secondProdiFormated}%,second_prodi.ilike.%${secondProdiFormated}%`)
+		.or(
+			`and(first_prodi.ilike.%${secondProdiFormated}%,first_univ.eq.%${secondUniv}%),second_prodi.ilike.%${secondProdiFormated}%,second_univ.eq.%${secondUniv}%`
+		)
 		.order('rank');
 	const jumlahUnivKedua = await supabase
 		.from('users')
