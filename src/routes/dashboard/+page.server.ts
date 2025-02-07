@@ -59,7 +59,7 @@ export const load: PageServerLoad = async ({ locals }) => {
 		.from('users')
 		.select('rank,first_prodi,second_prodi')
 		.or(
-			`and(first_prodi.ilike.%${secondProdiFormated}%,first_univ.eq.%${secondUniv}%),second_prodi.ilike.%${secondProdiFormated}%,second_univ.eq.%${secondUniv}%`
+			`and(first_prodi.ilike.%${secondProdiFormated}%,first_univ.eq.${secondUniv}),and(second_prodi.ilike.%${secondProdiFormated}%,second_univ.eq.${secondUniv})`
 		)
 		.order('rank');
 	const jumlahUnivKedua = await supabase
@@ -83,8 +83,7 @@ export const load: PageServerLoad = async ({ locals }) => {
 	});
 	const cleanJumlahProdiKedua = jumlahProdiKedua.data?.filter(
 		(e) => e.first_prodi === secondProdi || e.second_prodi === secondProdi
-	);
-
+	);	
 	const rankKedua = cleanJumlahProdiKedua!.findIndex((e) => e.rank === rank) + 1;
 	const jumlahRankAtasKedua = rankKedua - 1;
 	const jumlahRankDiBawahKedua = rankKedua > 0 ? cleanJumlahProdiKedua!.length - rankKedua : 0;
